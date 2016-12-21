@@ -50,13 +50,14 @@ public class GetThresholdRequestTest {
 
     @Before
     public void createReports() throws SQLException {
-        String sql = "INSERT INTO threshold (providerId, look_back_days, threshold_percent) " +
-                "VALUES (?, ?, ?) " +
+        String sql = "INSERT INTO threshold (providerId, look_back_days, up_threshold_percent, down_threshold_percent) " +
+                "VALUES (?, ?, ?, ?) " +
                 "RETURNING *";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, 1);
             stmt.setInt(2, 3);
             stmt.setDouble(3, 0.2);
+            stmt.setDouble(4, 0.2);
 
             stmt.execute();
             ResultSet rset = stmt.getResultSet();

@@ -74,7 +74,11 @@ public class GetMultipleThresholdRequest {
 
                         for (int id : providerIds) {
                             if (!thresholdFromDB.contains(id)) {
-                                thresholdInfos.add(new ThresholdInfo(id, thresholdDefault.getLookBackDays(), thresholdDefault.getThresholdPercent()));
+                                thresholdInfos.add(new ThresholdInfo(
+                                        id,
+                                        thresholdDefault.getLookBackDays(),
+                                        thresholdDefault.getUpThresholdPercent(),
+                                        thresholdDefault.getDownThresholdPercent()));
                             }
                         }
                         return new IDALResponse<>(thresholdInfos.toArray(new ThresholdInfo[0]));

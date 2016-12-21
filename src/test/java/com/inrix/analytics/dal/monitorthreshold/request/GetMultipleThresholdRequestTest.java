@@ -54,13 +54,14 @@ public class GetMultipleThresholdRequestTest {
 
     @Before
     public void createReports() throws SQLException {
-        String sql = "INSERT INTO threshold (providerId, look_back_days, threshold_percent) " +
-                "VALUES (?, ?, ?) " +
+        String sql = "INSERT INTO threshold (providerId, look_back_days, up_threshold_percent, down_threshold_percent) " +
+                "VALUES (?, ?, ?, ?) " +
                 "RETURNING *";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, -999);
             stmt.setInt(2, 5);
             stmt.setDouble(3, 0.5);
+            stmt.setDouble(4, 0.5);
 
             stmt.execute();
             ResultSet rset = stmt.getResultSet();
@@ -70,6 +71,7 @@ public class GetMultipleThresholdRequestTest {
             stmt.setInt(1, 1);
             stmt.setInt(2, 3);
             stmt.setDouble(3, 0.3);
+            stmt.setDouble(4, 0.3);
 
             stmt.execute();
             rset = stmt.getResultSet();
@@ -86,12 +88,14 @@ public class GetMultipleThresholdRequestTest {
         for (ThresholdInfo info : result){
             if (info.getProviderId() == 1){
                 assertTrue(info.getLookBackDays() == 3);
-                assertTrue(info.getThresholdPercent() == 0.3);
+                assertTrue(info.getUpThresholdPercent() == 0.3);
+                assertTrue(info.getDownThresholdPercent() == 0.3);
             }
 
             if (info.getProviderId() == 2){
                 assertTrue(info.getLookBackDays() == 5);
-                assertTrue(info.getThresholdPercent() == 0.5);
+                assertTrue(info.getUpThresholdPercent() == 0.5);
+                assertTrue(info.getDownThresholdPercent() == 0.5);
             }
         }
     }

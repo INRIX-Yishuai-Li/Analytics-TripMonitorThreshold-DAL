@@ -54,7 +54,8 @@ public class CreateThresholdRequestTest {
         oneThreshold = new ThresholdInfo();
         oneThreshold.setProviderId(1);
         oneThreshold.setLookBackDays(3);
-        oneThreshold.setThresholdPercent(0.2);
+        oneThreshold.setUpThresholdPercent(0.2);
+        oneThreshold.setDownThresholdPercent(0.2);
         CreateThresholdRequest request = new CreateThresholdRequest(null, oneThreshold);
         IDALResponse<ThresholdInfo> response = request.execute();
 

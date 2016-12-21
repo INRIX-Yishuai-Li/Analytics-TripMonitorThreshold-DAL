@@ -30,14 +30,15 @@ public class CreateThresholdRequest {
         ILogger logger = LoggerFactory.getLogger();
         IDALConfiguration configuration = Utils.loadConfig();
 
-        String sql = "INSERT INTO threshold (providerid, look_back_days, threshold_percent) VALUES (?, ?, ?) RETURNING *";
+        String sql = "INSERT INTO threshold (providerid, look_back_days, up_threshold_percent, down_threshold_percent) VALUES (?, ?, ?, ?) RETURNING *";
         try{
             JDBCProperties props = JDBCProperties.get(configuration);
             try (Connection conn = props.getConnection()){
                 try (PreparedStatement stmt = conn.prepareStatement(sql)){
                     stmt.setInt(1, thresholdInfo.getProviderId());
                     stmt.setInt(2, thresholdInfo.getLookBackDays());
-                    stmt.setDouble(3, thresholdInfo.getThresholdPercent());
+                    stmt.setDouble(3, thresholdInfo.getUpThresholdPercent());
+                    stmt.setDouble(4, thresholdInfo.getDownThresholdPercent());
                     if (stmt.execute()) {
                         ResultSet rset = stmt.getResultSet();
                         rset.next();
@@ -53,7 +54,8 @@ public class CreateThresholdRequest {
             String tb = Utils.stackTrace(ex);
             String msg = "Unable to insert: providerId: " + thresholdInfo.getProviderId()
                     + " look_back_days:" + thresholdInfo.getLookBackDays()
-                    + " percent:" + thresholdInfo.getThresholdPercent()
+                    + "up percent:" + thresholdInfo.getUpThresholdPercent()
+                    + "down percent:" + thresholdInfo.getDownThresholdPercent()
                     + "\nStacktrace:\n" + tb;
             logger.error(requestContext, msg);
             return new IDALResponse<>(ex);
