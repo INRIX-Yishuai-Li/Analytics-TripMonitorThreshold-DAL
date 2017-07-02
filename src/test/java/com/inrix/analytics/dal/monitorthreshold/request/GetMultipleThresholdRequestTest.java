@@ -2,7 +2,6 @@ package com.inrix.analytics.dal.monitorthreshold.request;
 
 import com.inrix.analytics.dal.interfaces.IDALResponse;
 import com.inrix.analytics.dal.monitorthreshold.model.ThresholdInfo;
-import org.apache.hadoop.hbase.shaded.com.google.common.primitives.Ints;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;

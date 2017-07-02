@@ -1,10 +1,10 @@
 package com.inrix.analytics.dal.monitorthreshold.request;
 
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
+
 import com.inrix.analytics.dal.datasource.DALConfigurations;
 import com.inrix.analytics.dal.interfaces.IDALConfiguration;
-import org.slf4j.LoggerFactory;
+import com.inrix.analytics.logging.LoggerFactory;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Yishuai.Li on 10/27/2016.
@@ -24,8 +26,8 @@ public class Setup {
 
     static {
         // To stop the pesky apache logs from showing up
-        Logger root = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        root.setLevel(Level.INFO);
+        /*Logger root = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+        root.setLevel(Level.INFO);*/
 
         Map<String, String> dev = new HashMap<>();
         dev.put("confName", "analytics.roadway.reports.dev.properties");
