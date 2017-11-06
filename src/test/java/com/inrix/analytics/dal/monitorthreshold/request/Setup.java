@@ -45,11 +45,6 @@ public class Setup {
         public static final String tripMonitorThresholdJDBC = "TripMonitorThresholdConfig";
 
         @Override
-        public String getName() {
-            return tripMonitorThresholdJDBC;
-        }
-
-        @Override
         public String getS3Bucket() {
             return "analytics-application-configuration";
         }
@@ -57,6 +52,21 @@ public class Setup {
         @Override
         public String getS3Key() {
             return "analytics.trip.monitor.dev.properties";
+        }
+
+        @Override
+        public Integer getExpirationInSeconds() {
+            return 600;
+        }
+
+        @Override
+        public String getName() {
+            return tripMonitorThresholdJDBC;
+        }
+
+        @Override
+        public String getS3RegionName() {
+            return "us-west-2";
         }
     }
 

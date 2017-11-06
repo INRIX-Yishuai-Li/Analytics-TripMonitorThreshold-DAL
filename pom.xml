@@ -6,13 +6,14 @@
 
     <groupId>inrix-analytics</groupId>
     <artifactId>Analytics-TripMonitorThreshold-DAL</artifactId>
-    <version>DEVELOP-1.0-SNAPSHOT</version>
+    <version>DEVELOP-1.1-SNAPSHOT</version>
 
     <properties>
         <!--maven variable which points to your local repository -->
         <internal.repo.path>http://inrix-artifactory:8081/artifactory/libs-snapshot-local</internal.repo.path>
         <java.version>1.8</java.version>
-        <analytics-dal-core.version>DEVELOP-2.4-SNAPSHOT</analytics-dal-core.version>
+        <analytics-dal-core.version>DEVELOP-8.8-SNAPSHOT</analytics-dal-core.version>
+        <analytics-logging.version>DEVELOP-8.1-SNAPSHOT</analytics-logging.version>
         <json-simple.version>1.1.1</json-simple.version>
         <mockito.version>1.10.19</mockito.version>
     </properties>
@@ -65,7 +66,7 @@
         <dependency>
             <groupId>inrix-analytics</groupId>
             <artifactId>analytics-logging-logback</artifactId>
-            <version>DEVELOP-7.3-SNAPSHOT</version>
+            <version>${analytics-logging.version}</version>
         </dependency>
 
     </dependencies>
